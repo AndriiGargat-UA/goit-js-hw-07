@@ -1,10 +1,9 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-const galleryContainer = document.querySelector('.gallery');
+const galleryRef = document.querySelector('.gallery');
 const galleryMarkup = createGalleryItemMarkup(galleryItems);
 
-galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
-
+galleryRef.insertAdjacentHTML('beforeend', galleryMarkup);
 
 function createGalleryItemMarkup(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
@@ -23,6 +22,23 @@ function createGalleryItemMarkup(galleryItems) {
     .join("");
 };
 
+galleryRef.addEventListener('click', onGalleryRefClick);
+
+let modalWindow;
+
+function onGalleryRefClick(event) {
+    event.preventDefault();
+    const isGalleryRef = event.target.classList.contains('gallery__image');
+    if (!isGalleryRef) {
+        
+        return
+    }
+
+    // console.log(event.target);
+    modalWindow = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="800" height="600">`)
+    modalWindow.show();
+}
 
 
 
@@ -31,4 +47,4 @@ function createGalleryItemMarkup(galleryItems) {
 console.log(galleryItems);
 
 
-console.log(galleryContainer);
+console.log(galleryRef);
