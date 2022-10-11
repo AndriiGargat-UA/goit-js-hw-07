@@ -29,22 +29,17 @@ let modalWindow;
 function onGalleryRefClick(event) {
     event.preventDefault();
     const isGalleryRef = event.target.classList.contains('gallery__image');
-    if (!isGalleryRef) {
-        
+    if (!isGalleryRef) {        
         return
     }
 
-    // console.log(event.target);
     modalWindow = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="800" height="600">`)
-    modalWindow.show();
-}
+    const modalOpen = modalWindow.show(window.addEventListener('keydown', onEscKeyPress));
+};
 
-
-
-
-
-console.log(galleryItems);
-
-
-console.log(galleryRef);
+function onEscKeyPress(event) {
+    if (event.code === 'Escape') {
+        modalWindow.close(window.removeEventListener('keydown', onEscKeyPress));    
+    };
+};
