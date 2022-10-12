@@ -15,6 +15,7 @@ function createGalleryItemMarcup(galleryItems) {
 };
 
 galleryRef.addEventListener('click', onGalleryRefClick);
+const lightbox = new SimpleLightbox('.gallery a', { animationSlide: true, captionsData: "alt", captionDelay: 250 });
 
 function onGalleryRefClick(event) {
     event.preventDefault();
@@ -22,7 +23,5 @@ function onGalleryRefClick(event) {
     if (!isGalleryRef) {        
         return
     }
-    const lightbox = new SimpleLightbox('.gallery a', {animationSlide:true, captionsData:"alt", captionDelay:250})
 }
-
 console.log(galleryItems);
